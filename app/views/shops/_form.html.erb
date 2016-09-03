@@ -1,0 +1,33 @@
+<%= form_for(@shop) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  
+    <div class="field">
+      <%= f.label :category_name, "店舗名称（必須）", class: "text-danger" %><br>
+      <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: true}, {class: "form-control category-id-field"} %>     
+    </div>
+
+    <div class="field">
+      <%= f.label :address, "店舗所在地（必須）", class: "text-danger" %><br>
+      <%= f.text_field :address, class: "form-control address-field", :placeholder => "例・○×駅前店" %>
+    </div>
+      
+    <div class="field">
+      <%= f.label :message, "口コミ情報（必須）", class: "text-danger" %><br>
+      <%= f.text_area :message, :rows => "5", class: "form-control message-field", :placeholder => "ご自由にお書き下さい" %>
+    </div>
+      
+    <div class="field">
+      <%= f.label :user_name, "投稿ネーム（必須）", class: "text-danger" %><br>
+      <%= f.text_field :user_name, class: "form-control runner_name-field" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "投稿する", data: { confirm: "よろしいですか？" }, class: "btn btn-primary" %>
+    </div>
+    
+    <p>
+      <button type="reset" class="btn btn-sm btn-warning">キャンセル</button> |
+      <%= link_to '戻る', root_path, class: "btn btn-sm btn-info" %>
+    </p>
+    
+<% end %>
